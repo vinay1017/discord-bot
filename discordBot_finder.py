@@ -29,22 +29,6 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-@client.command(pass_context=True)
-async def join(ctx):
-    #author = ctx.message.author
-    #channel = ctx.message.author.voice.voice_channel
-    #await bot.join_voice_channel(channel)
-    channel = ctx.message.author.voice.voice_channel
-    await client.join_voice_channel(channel)
-    #await client.join_voice
-    print("Bot joined vc")
-
-@client.command(pass_context=True)
-async def leave(ctx):
-    server = ctx.message.server
-    voice_client = client.voice_client_in(server)
-    # voice client = instance of the bot being in voice channel
-    await voice_client.disconnect()
 
 @client.event
 async def on_message(message):
@@ -84,7 +68,8 @@ async def on_message(message):
             await client.send_message(message.channel, msg)
     # if str(message.content.startswith('you pass butter')).__contains__():
 
-    # YouTube method
+    # YouTube method: Searches YouTube for a video (the top choice) using URLlib.
+    # Code adapted from: ____
     if message.content.startswith('find'):
         # could make a txt log of commands? write txt file.
         print(message.content)  # this is how you get user message
@@ -105,7 +90,8 @@ async def on_message(message):
         msg = 'here is your video: ' + videoString + ' ' + '{0.author.mention}'.format(message)
         await client.send_message(message.channel, msg)
 
-    # Google method
+    # Google method / searches google using googlesearch import.
+    # Code adapted from: ____
     if message.content.startswith('google') or message.content.startswith('Google'):
         try:
             from googlesearch import search
